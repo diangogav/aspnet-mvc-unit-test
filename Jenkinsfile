@@ -8,8 +8,8 @@ pipeline {
         stage('Build') {
             steps {                
                 sh 'nuget restore'
-                bat 'msbuild -p:VSToolsPath=c:/MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3/tools/VSToolsPath Inspinia_MVC5_SeedProject.sln /t:Clean'
-                bat 'msbuild -p:Platform="Any CPU" -p:VSToolsPath=c:/MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3/tools/VSToolsPath Inspinia_MVC5_SeedProject.sln'
+                bat 'msbuild -p:VSToolsPath=c:/MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3/tools/VSToolsPath AspNetMvcUnitTest.sln /t:Clean'
+                bat 'msbuild -p:Platform="Any CPU" -p:VSToolsPath=c:/MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3/tools/VSToolsPath AspNetMvcUnitTest.sln'
             }
         }
 
@@ -33,7 +33,7 @@ pipeline {
             steps {
                 echo 'Creating image...' 
                 script { 
-                    myImage = docker.build("gcr.io/infra-su-desarrollo/web-production:$tag","-f deploy-mvc.Dockerfile .") 
+                    myImage = docker.build("gcr.io/infra-su-desarrollo/hola-mundo:$tag","-f deploy-mvc.Dockerfile .") 
                 } 
                 echo 'Image created'
             }

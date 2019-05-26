@@ -1,0 +1,30 @@
+# version: "3.2"
+
+# services:
+#   vote:
+#     image: gcr.io/infra-su-desarrollo/web-production
+#     build: 
+#       context: .
+#       dockerfile: deploy-mvc.Dockerfile
+#     ports:
+#       - "80:80"
+
+version: "3.2"
+
+services:
+  web:
+    deploy:
+      replicas: 1
+    image: gcr.io/infra-su-desarrollo/web-production:latest
+    ports:
+      - "80:80"
+  wfc:
+    deploy:
+      replicas: 1
+    image: gcr.io/infra-su-desarrollo/wfc-production:latest
+    ports:
+      - "83:83"
+  # wcf:
+  #   image: gcr.io/infra-su-desarrollo/wfc-production
+  #   ports:
+  #     - "83:83"
